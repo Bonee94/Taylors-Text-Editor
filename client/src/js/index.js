@@ -1,9 +1,9 @@
 import { Workbox } from "workbox-window";
 import Editor from "./editor";
 import "./database";
-import { getDb } from "./database";
 import "../css/style.css";
 import logoImg from "../images/logo.png";
+import "./dbSaveButton"
 
 const appDisplay = document.getElementById("main");
 const loaderDisplay = document.getElementById("loader");
