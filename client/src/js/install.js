@@ -6,6 +6,22 @@ let deferredPrompt;
 
 
 // TODO: Implement a click event handler on the `butInstall` element
+butInstall.addEventListener("click", async () => {
+  deferredPrompt.prompt().then(({ outcome }) => {
+    console.log(outcome);
+
+    if (outcome == "dismissed") {
+      deferredPrompt = null;
+      startEvent();
+      return;
+    }
+
+    localStorage.setItem("app-installed", "true");
+
+    butInstall.setAttribute("disabled", true);
+    butInstall.textContent = "Thank you for installing J.A.T.E.!";
+  });
+});
 
 const checkInstall = () => {
   let installCheck = localStorage.getItem("app-installed");
