@@ -1,37 +1,51 @@
-import { Workbox } from 'workbox-window';
-import Editor from './editor';
-import './database';
-import '../css/style.css';
-import logoImg from '../images/logo.png';
+import { Workbox } from "workbox-window";
+import Editor from "./editor";
+import "./database";
+import { getDb } from "./database";
+import "../css/style.css";
+import logoImg from "../images/logo.png";
 
-const main = document.querySelector('#main');
-main.innerHTML = '';
+const appDisplay = document.getElementById("main");
+const loaderDisplay = document.getElementById("loader");
 
-const loadSpinner = () => {
-  const spinner = document.createElement('div');
-  spinner.classList.add('spinner');
-  spinner.innerHTML = `
-  <div class="loading-container">
-  <div class="loading-spinner" />
-  </div>
-  `;
-  main.appendChild(spinner);
+const main = document.querySelector("#main");
+main.innerHTML = "";
+
+const errorLoadSpinner = () => {
+  appDisplay.style.display = "none";
+  loaderDisplay.style.display = "flex";
 };
 
-const editor = new Editor();
-
-if (typeof editor === 'undefined') {
-  loadSpinner();
-}
-
 // Check if service workers are supported
-if ('serviceWorker' in navigator) {
+if ("serviceWorker" in navigator) {
   // register workbox service worker
-  const workboxSW = new Workbox('/sw.js');
+  const workboxSW = new Workbox("/sw.js");
   workboxSW.register();
 } else {
-  console.error('Service workers are not supported in this browser.');
+  console.error("Service workers are not supported in this browser.");
 }
 
+const loadUpDisplay = () => {
+  appDisplay.style.display = "none";
+  loaderDisplay.style.display = "flex";
 
-document.getElementById('logo-img').src = logoImg;
+  setTimeout(() => {
+    loaderDisplay.innerHTML = '<div class="loading-spinner"></div>';
+  }, 3000);
+
+  setTimeout(() => {
+    appDisplay.style.display = "block";
+    loaderDisplay.style.display = "none";
+
+    const editor = new Editor();
+
+    if (typeof editor === "undefined") {
+      errorLoadSpinner();
+    }
+  }, 5000);
+};
+
+document.getElementById("logo-img").src = logoImg;
+document.getElementById("loading-logo").src = logoImg;
+
+loadUpDisplay();
