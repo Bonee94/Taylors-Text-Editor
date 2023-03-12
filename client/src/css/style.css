@@ -76,7 +76,7 @@ h1 {
 
 @keyframes slammer {
   0% {
-    transform: scale(2);
+    transform: scale(8);
     opacity: 0;
   }
 
