@@ -27,11 +27,14 @@ if ("serviceWorker" in navigator) {
 
 const loadUpDisplay = () => {
   appDisplay.style.display = "none";
-  loaderDisplay.style.display = "flex";
+  loaderDisplay.style.display = "block";
 
   setTimeout(() => {
-    loaderDisplay.innerHTML = '<div class="loading-spinner"></div>';
-  }, 3000);
+    const divEl = document.createElement("div");
+    divEl.className = "loading-spinner";
+    
+    loaderDisplay.appendChild(divEl)
+  }, 2000);
 
   setTimeout(() => {
     appDisplay.style.display = "block";
@@ -42,7 +45,7 @@ const loadUpDisplay = () => {
     if (typeof editor === "undefined") {
       errorLoadSpinner();
     }
-  }, 5000);
+  }, 4000);
 };
 
 document.getElementById("logo-img").src = logoImg;
