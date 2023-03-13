@@ -27,7 +27,7 @@ if ("serviceWorker" in navigator) {
 
 const loadUpDisplay = () => {
   appDisplay.style.display = "none";
-  loaderDisplay.style.display = "block";
+  loaderDisplay.style.display = "flex";
 
   setTimeout(() => {
     const divEl = document.createElement("div");

@@ -43,7 +43,7 @@ h1 {
 .loading-spinner {
   margin: auto;
   position: relative;
-  top: -17vh;
+  top: 90px;
   animation-duration: 0.75s;
   animation-iteration-count: infinite;
   animation-name: rotate-forever;
@@ -56,9 +56,8 @@ h1 {
 }
 
 .loading-container {
-  display: block;
+  display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   height: calc(100vh - var(--navbar-height));
 }
@@ -74,13 +73,13 @@ h1 {
 }
 
 #loading-logo {
-  position: relative;
-  left: 20vw;
+  position: fixed;
+  top: 30px;
   animation-name: slammer;
   animation-duration: 1.3s;
   animation-timing-function: linear;
-  height: 60vw;
-  width: 60vw;
+  height: 400px;
+  width: 400px;
 }
 
 @keyframes slammer {
